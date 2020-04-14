@@ -63,7 +63,6 @@ class _CardViewState extends State<CardView> {
             setState(() {
               prefs.getStringList("dataKeys");
             });
-            print("Back");
           },
           child: Container(
             margin:
