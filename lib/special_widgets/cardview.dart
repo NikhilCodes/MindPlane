@@ -12,17 +12,15 @@ class CardView extends StatefulWidget {
 
   @override
   _CardViewState createState() => _CardViewState();
-
 }
 
 class _CardViewState extends State<CardView> {
-  
   SharedPreferences prefs;
-  
+
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async { 
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       prefs = await SharedPreferences.getInstance();
     });
   }
@@ -58,7 +56,9 @@ class _CardViewState extends State<CardView> {
           onTap: () async {
             await Navigator.of(context).push(
               MaterialPageRoute(
-                  builder: (context) => EditPage(data: widget.data, id: widget.id)),
+                builder: (context) =>
+                    EditPage(data: widget.data, id: widget.id),
+              ),
             );
             setState(() {
               prefs.getStringList("dataKeys");
