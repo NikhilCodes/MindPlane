@@ -7,6 +7,11 @@ final safeColors = [
   Colors.indigo,
   Colors.pinkAccent.shade700,
   Colors.teal,
+  Colors.purple,
+  Colors.indigo.shade700,
+  Colors.red.shade900,
+  Colors.indigoAccent,
+  Colors.black.withRed(50).withGreen(50).withBlue(50),
 ];
 
 final monthNames = [
