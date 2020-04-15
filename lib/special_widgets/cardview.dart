@@ -132,3 +132,55 @@ class _CardViewState extends State<CardView> {
     );
   }
 }
+
+class EmptyIndicationCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FractionallySizedBox(
+      heightFactor: 0.88,
+      widthFactor: 0.68,
+      child: GestureDetector(
+        onTap: () async {
+          await Navigator.of(context).push(
+            MaterialPageRoute(
+                builder: (context) => EditPage(autoGen: true)),
+          );
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white.withOpacity(0.3),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: <Widget>[
+                    Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 50,
+                    ),
+                    Icon(
+                      Icons.edit,
+                      color: Colors.white,
+                      size: 100,
+                    ),
+                  ],
+                ),
+                Icon(
+                  Icons.short_text,
+                  color: Colors.white,
+                  size: 100,
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

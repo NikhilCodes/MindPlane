@@ -154,39 +154,44 @@ class _MyHomePageState extends State<MyHomePage>
                 child: SizedBox(
                   height: MediaQuery.of(context).size.height * 0.48,
                   width: MediaQuery.of(context).size.width,
-                  child: Swiper(
-                    duration: 100,
-                    physics: BouncingScrollPhysics(),
-                    itemCount: prefs == null
-                        ? 0
-                        : (prefs.getStringList("dataKeys") ?? []).length,
-                    viewportFraction: 0.74,
-                    scale: 0.81,
-                    scrollDirection: Axis.horizontal,
-                    loop: false,
-                    itemBuilder: (BuildContext context, int index) {
-                      List<List<String>> data = [];
-                      print("Rebuilding Swiper...");
-                      if (prefs.containsKey('dataKeys')) {
-                        prefs.getStringList("dataKeys").forEach((element) {
-                          data.add(prefs.getStringList(element));
-                        });
-                      }
+                  child: prefs != null &&
+                          prefs.getStringList("dataKeys").length != 0
+                      ? Swiper(
+                          duration: 100,
+                          physics: BouncingScrollPhysics(),
+                          itemCount: prefs == null
+                              ? 0
+                              : (prefs.getStringList("dataKeys") ?? []).length,
+                          viewportFraction: 0.74,
+                          scale: 0.81,
+                          scrollDirection: Axis.horizontal,
+                          loop: false,
+                          itemBuilder: (BuildContext context, int index) {
+                            List<List<String>> data = [];
+                            print("Rebuilding Swiper...");
+                            if (prefs.containsKey('dataKeys')) {
+                              prefs
+                                  .getStringList("dataKeys")
+                                  .forEach((element) {
+                                data.add(prefs.getStringList(element));
+                              });
+                            }
 
-                      return Hero(
-                        key: Key(index.toString()),
-                        tag: "edit-button-$index",
-                        child: Material(
-                          key: Key(index.toString()),
-                          color: Colors.transparent,
-                          child: CardView(
-                            data: data[index],
-                            id: index,
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                            return Hero(
+                              key: Key(index.toString()),
+                              tag: "edit-button-$index",
+                              child: Material(
+                                key: Key(index.toString()),
+                                color: Colors.transparent,
+                                child: CardView(
+                                  data: data[index],
+                                  id: index,
+                                ),
+                              ),
+                            );
+                          },
+                        )
+                      : EmptyIndicationCard(),
                 ),
               ),
               Center(
