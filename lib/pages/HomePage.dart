@@ -194,31 +194,33 @@ class _MyHomePageState extends State<MyHomePage>
                       : EmptyIndicationCard(),
                 ),
               ),
-              Center(
-                child: Hero(
-                  tag: "add-button",
-                  child: Container(
-                    height: 66,
-                    width: 66,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(33),
-                    ),
-                    child: GestureDetector(
-                      child: Icon(Icons.add, size: 40),
-                      onTap: () async {
-                        await Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) => EditPage(autoGen: true)),
-                        );
-                        setState(() {
-                          prefs.getStringList("dataKeys");
-                        });
-                      },
+              Expanded(
+                child: Center(
+                  child: Hero(
+                    tag: "add-button",
+                    child: Container(
+                      height: 66,
+                      width: 66,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(33),
+                      ),
+                      child: GestureDetector(
+                        child: Icon(Icons.add, size: 40),
+                        onTap: () async {
+                          await Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (context) => EditPage(autoGen: true)),
+                          );
+                          setState(() {
+                            prefs.getStringList("dataKeys");
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ],
