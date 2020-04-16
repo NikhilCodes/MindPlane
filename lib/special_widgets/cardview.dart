@@ -5,10 +5,11 @@ import 'package:MindPlane/pages/editpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CardView extends StatefulWidget {
-  CardView({Key key, @required this.data, this.id});
+  CardView({Key key, @required this.data, this.id, this.parent});
 
   final List<String> data;
   final int id;
+  final parent;
 
   @override
   _CardViewState createState() => _CardViewState();
@@ -60,7 +61,7 @@ class _CardViewState extends State<CardView> {
                     EditPage(data: widget.data, id: widget.id),
               ),
             );
-            setState(() {
+            widget.parent.setState(() {
               prefs.getStringList("dataKeys");
             });
           },

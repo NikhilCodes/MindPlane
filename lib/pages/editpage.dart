@@ -97,7 +97,9 @@ class _EditPageState extends State<EditPage>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Hero(
-        tag: widget.autoGen == true ? "add-button" : "edit-button-${widget.id}",
+        tag: widget.autoGen == true
+            ? "add-button"
+            : widget.autoGen == null ? "edit-button-${widget.id}" : "",
         child: Container(
           child: Stack(
             // Contains screen, date and close button
@@ -220,7 +222,7 @@ class _EditPageState extends State<EditPage>
                             await prefs.setStringList("data_$timeStamp", data);
                           } else {
                             var timestamp =
-                            prefs.getStringList("dataKeys")[widget.id];
+                                prefs.getStringList("dataKeys")[widget.id];
                             data = prefs.getStringList(timestamp);
                             data[0] = _headingController.text;
                             data[5] = _bodyController.text;
@@ -333,43 +335,48 @@ class _EditPageState extends State<EditPage>
                           },
                         ),
                       ),
-                      widget.autoGen==true ? Container() : SizedBox(
-                        height: 70,
-                        width: 70,
-                        child: GestureDetector(
-                          child: Container(
-                            padding: EdgeInsets.only(right: 10, top: 27),
-                            alignment: Alignment.topRight,
-                            child: Icon(Icons.delete,
-                                size: 30, color: Colors.purple.shade500),
-                          ),
-                          onTap: () {
-                            deleteJournal(widget.id);
-                            Navigator.of(context).pop(true);
-                          },
-                        ),
-                      ),
+                      widget.autoGen == true
+                          ? Container()
+                          : SizedBox(
+                              height: 70,
+                              width: 70,
+                              child: GestureDetector(
+                                child: Container(
+                                  padding: EdgeInsets.only(right: 10, top: 27),
+                                  alignment: Alignment.topRight,
+                                  child: Icon(Icons.delete,
+                                      size: 30, color: Colors.purple.shade500),
+                                ),
+                                onTap: () {
+                                  setState(() {
+                                    widget.autoGen = false;
+                                  });
+                                  deleteJournal(widget.id);
+                                  Navigator.of(context).pop(true);
+                                },
+                              ),
+                            ),
                     ],
                   ),
                 ),
               ),
               saveStatus == "Untitled"
                   ? Center(
-                child: AnimatedContainer(
-                  alignment: Alignment.center,
-                  duration: Duration(milliseconds: 200),
-                  height: 350,
-                  width: 350,
-                  child: FlareLoading(
-                    name: "assets/Success Check.flr",
-                    startAnimation: saveStatus,
-                    onSuccess: (data) {
-                      Navigator.of(context).pop(true);
-                    },
-                    onError: (error, stacktrace) => print(stacktrace),
-                  ),
-                ),
-              )
+                      child: AnimatedContainer(
+                        alignment: Alignment.center,
+                        duration: Duration(milliseconds: 200),
+                        height: 350,
+                        width: 350,
+                        child: FlareLoading(
+                          name: "assets/Success Check.flr",
+                          startAnimation: saveStatus,
+                          onSuccess: (data) {
+                            Navigator.of(context).pop(true);
+                          },
+                          onError: (error, stacktrace) => print(stacktrace),
+                        ),
+                      ),
+                    )
                   : SizedBox(width: 0, height: 0),
             ],
           ),

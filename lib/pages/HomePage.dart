@@ -186,6 +186,7 @@ class _MyHomePageState extends State<MyHomePage>
                                 child: CardView(
                                   data: data[index],
                                   id: index,
+                                  parent: this,
                                 ),
                               ),
                             );
