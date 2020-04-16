@@ -2,10 +2,6 @@
 
 Your mind's own journal.
 
-## DEMO
-
-![DEMO](/demo.gif)
-
 
 ## Features implemented
 
