@@ -155,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage>
                   height: MediaQuery.of(context).size.height * 0.48,
                   width: MediaQuery.of(context).size.width,
                   child: prefs != null &&
-                      (prefs.getStringList("dataKeys")??[]).length != 0
+                          (prefs.getStringList("dataKeys") ?? []).length != 0
                       ? Swiper(
                           duration: 100,
                           physics: BouncingScrollPhysics(),
