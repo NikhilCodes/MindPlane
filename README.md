@@ -2,6 +2,9 @@
 
 Your mind's own journal.
 
+# Demo
+
+![Demo](demo/MindPlane.gif)
 
 ## Features implemented
 
