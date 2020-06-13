@@ -35,6 +35,7 @@ class _CardViewState extends State<CardView> {
     var hMargin = 7.0; // Margin on left and right side of card.
     var vMargin = 20.0;
     return Stack(
+      key: widget.key,
       fit: StackFit.expand,
       children: <Widget>[
         Container(
